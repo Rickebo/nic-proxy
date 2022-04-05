@@ -7,6 +7,7 @@ usage() {
 
 API=https://api.ipify.org/
 EXCLUDE_CURRENT=0
+CURL_TIMEOUT=5
 
 while getopts ":f:a:d" o; do
     case "${o}" in
@@ -27,7 +28,7 @@ done
 
 if [[ $EXCLUDE_CURRENT -eq 1 ]];
 then
-    CURRENT=$(curl -s $API)
+    CURRENT=$(curl --connect-timeout $CURL_TIMEOUT -s $API)
     BLACKLIST_INPUT="$BLACKLIST_INPUT,$CURRENT"
 fi
 
@@ -45,7 +46,7 @@ containsElement () {
 EXIT_CODE=1
 
 while IFS= read -r interface; do
-    IP=$(curl -s --interface $interface $API)
+    IP=$(curl -s --connect-timeout $CURL_TIMEOUT --interface $interface $API)
 
     if [[ $? -eq $WORKING_EXIT_CODE ]];
     then
