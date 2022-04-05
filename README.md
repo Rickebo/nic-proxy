@@ -15,7 +15,8 @@ to use and proved to be unreliable for me.
 
 ## Prerequisites
 
-To run the script, apt must be installed and set up, as well as wget if the command below is used.
+To run the script, apt must be installed and set up, as well as wget if the command below is used. Note that the script
+installs some other dependencies if not already installed, such as git. 
 
 ## Setup
 
